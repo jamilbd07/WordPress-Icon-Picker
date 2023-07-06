@@ -1,0 +1,114 @@
+#wipIcon {
+	margin-bottom: 20px;
+
+	.dashicon,
+	i {
+		font-size: 30px;
+
+		&:hover {
+			cursor: pointer;
+			color: #3175d5;
+		}
+	}
+}
+
+.wip-iconpicker-popup {
+	width: 350px;
+	top: 10px !important;
+
+	.components-popover__content {
+		width: 100%;
+	}
+}
+
+.wip-parent-tab-panel {
+	.wip-icon-tab {
+		height: 30px;
+		color: #9f9d9d;
+		margin-bottom: 8px;
+	}
+
+	.wip-icon-tab,
+	.wip-tab {
+		&.active-tab {
+			border-bottom: 2px solid #3c434a;
+			color: #3c434a;
+		}
+	}
+}
+
+.wip-icon-area {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 5px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	align-items: flex-start;
+	justify-content: flex-start;
+	max-height: 225px;
+	margin-bottom: 20px;
+	margin-left: 5px;
+
+	.wip-icon-box {
+		background-color: #e4e4e4;
+		text-align: center;
+		width: calc(33.33% - 7px);
+		height: 70px;
+		position: relative;
+		transition: 0.3s;
+		order: 2;
+
+		&.active {
+			background-color: #bcd4f0;
+			order: 1;
+		}
+
+		&:hover {
+			background-color: #c7c7c7;
+			cursor: pointer;
+		}
+
+		.wip-icon-content {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translate(-50%, 10px);
+			height: 100%;
+			width: 100%;
+			padding: 5px;
+			overflow: hidden;
+		}
+
+		.dashicon,
+		i {
+			font-size: 22px;
+			display: block;
+			margin: 0 auto 8px;
+		}
+
+		.components-panel__row {
+			font-size: 11px;
+			line-height: 1;
+			height: auto !important;
+			display: block;
+			text-transform: capitalize;
+		}
+	}
+}
+
+.wip-social-profile {
+	#zoloIcon {
+		margin-bottom: 0px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 100%;
+		min-width: 30px;
+
+		.dashicon,
+		i {
+			font-size: 18px;
+		}
+	}
+}

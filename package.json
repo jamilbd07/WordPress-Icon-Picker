@@ -1,0 +1,27 @@
+{
+  "name": "wordpress-icon-picker",
+  "version": "1.0.0",
+  "description": "Icon Picker for WordPress, Gutenberg, Theme development. Dashicon and FontAwesome icon support",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wordpress",
+    "icon",
+    "picker",
+    "gutenberg",
+    "icon",
+    "picker",
+    "icon",
+    "picker",
+    "react",
+    "icon",
+    "picker",
+    "fontawesome",
+    "icon",
+    "picker"
+  ],
+  "author": "MD Jamil Uddin",
+  "license": "MIT"
+}
