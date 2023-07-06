@@ -28,4 +28,4 @@ const DisplayIcon = ( { icon } ) => {
 	);
 };
 
-export default DisplayIcon;
+module.exports = DisplayIcon;
