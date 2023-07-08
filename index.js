@@ -224,4 +224,4 @@ const IconPicker = (props) => {
 	);
 };
 
-module.exports = IconPicker;
+export {IconPicker, DisplayIcon};
