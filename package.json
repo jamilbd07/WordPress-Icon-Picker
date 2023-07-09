@@ -1,6 +1,6 @@
 {
   "name": "wordpress-icon-picker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Icon Picker for WordPress, Gutenberg, Theme development. Dashicon and FontAwesome icon support",
   "main": "index.js",
   "scripts": {
