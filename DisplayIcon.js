@@ -7,23 +7,23 @@ import {
 } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 
-const DisplayIcon = ( { icon } ) => {
-	if ( typeof icon != 'object' ) {
+import { getIconType } from "./helpers";
+
+const DisplayIcon = ({ icon }) => {
+	if (typeof icon != 'string') {
 		return;
 	}
 
-	const iconName = Object.keys( icon )[ 0 ];
+	const iconType = getIconType(icon)
 
 	return (
 		<>
-			{ icon[ iconName ].source &&
-				icon[ iconName ].source === 'dashicon' && (
-					<Dashicon icon={ iconName } />
-				) }
-			{ icon[ iconName ].source &&
-				icon[ iconName ].source === 'fontawesome' && (
-					<i class={ `${ icon[ iconName ].type } ${ iconName }` }></i>
-				) }
+			{iconType === 'dashicon' && (
+				<Dashicon icon={icon} />
+			)}
+			{iconType === 'fontawesome' && (
+				<i class={icon}></i>
+			)}
 		</>
 	);
 };

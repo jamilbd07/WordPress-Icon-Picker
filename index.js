@@ -9,30 +9,12 @@ import {
 import { useEffect, useState, useRef } from '@wordpress/element';
 
 import DisplayIcon from './DisplayIcon';
+import { getIconType, useOutsideAlerter } from "./helpers";
 import './style.scss';
 
 //Import Dashicon list
 import { dashIcon } from './icons/dashicon';
 import { fontAwesome } from './icons/fontawesome';
-
-function useOutsideAlerter(ref, setVal) {
-	useEffect(() => {
-		/**
-		 * Alert if clicked on outside of element
-		 */
-		function handleClickOutside(event) {
-			if (ref.current && !ref.current.contains(event.target)) {
-				setVal(false);
-			}
-		}
-		// Bind the event listener
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			// Unbind the event listener on clean up
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [ref]);
-}
 
 const IconPicker = (props) => {
 	const {
@@ -50,30 +32,17 @@ const IconPicker = (props) => {
 	const [popoverAnchor, setPopoverAnchor] = useState('');
 
 	const popoverWrapperRef = useRef(null);
-	useOutsideAlerter(popoverWrapperRef, setShowPopover);
+	const iconWrapperRef = useRef(null);
+	useOutsideAlerter(popoverWrapperRef, iconWrapperRef, setShowPopover);
 
 	useEffect(() => {
-		if (typeof dashIcon === 'object' && Object.keys(dashIcon).length > 0) {
+		if (typeof dashIcon === 'object' && dashIcon.length > 0) {
 			setIcons(dashIcon);
 		}
 
 		//set popover anchor
 		const selector = document.querySelector('#zoloIcon');
 		setPopoverAnchor(selector);
-
-		// let icons = {}
-		// Object.keys(fontawesome).map((item, index) => {
-		//     const splitText = fontawesome[item].split(" ");
-		//     icons = {
-		//         ...icons,
-		//         [splitText[1]]: {
-		//             name: splitText[1].replace(/-/g, " "),
-		//             source: 'fontawesome',
-		//             type: splitText[0]
-		//         }
-		//     }
-		// })
-		// console.log("Icons:", icons)
 	}, []);
 
 	useEffect(() => {
@@ -82,47 +51,40 @@ const IconPicker = (props) => {
 
 		switch (iconType) {
 			case 'fontawesome':
-				if (
-					typeof fontAwesome === 'object' &&
-					Object.keys(fontAwesome).length > 0
-				) {
+				if (typeof fontAwesome === 'object' && fontAwesome.length > 0) {
 					setIcons(fontAwesome);
 				}
 				break;
 			default:
-				if (
-					typeof dashIcon === 'object' &&
-					Object.keys(dashIcon).length > 0
-				) {
+				if (typeof dashIcon === 'object' && dashIcon.length > 0) {
 					setIcons(dashIcon);
 				}
 		}
 	}, [iconType]);
 
+	/**
+	 * UseEffect when attribute value is changed
+	 */
 	useEffect(() => {
-		if (!value || typeof value != 'object') {
+		if (!value || typeof value != 'string') {
 			return;
 		}
-		const key = Object.keys(value)[0];
-		setSelectedIcon(key);
 
-		if (value[key].source) {
-			setIconType(value[key].source);
-		}
+		setSelectedIcon(value);
+		setIconType(getIconType(value));
+
 	}, [value]);
 
+	/**
+	 * search icon function
+	 * @param {*} text 
+	 */
 	const searchIcon = (text) => {
 		setSearchInput(text);
 
 		//Filter search result
 		const iconList = iconType === 'fontawesome' ? fontAwesome : dashIcon;
-		const filteredIcons = Object.keys(iconList)
-			.filter((item) => item.includes(text))
-			.reduce((obj, key) => {
-				return Object.assign(obj, {
-					[key]: iconList[key],
-				});
-			}, {});
+		const filteredIcons = iconList.filter((item) => item.includes(text));
 
 		//set Icons list from search result
 		setIcons(filteredIcons);
@@ -139,8 +101,11 @@ const IconPicker = (props) => {
 	return (
 		<>
 			{showHeading && <PanelRow>{title}</PanelRow>}
-
-			<div id={'wipIcon'} onClick={() => setShowPopover(true)}>
+			<div
+				ref={iconWrapperRef}
+				id={'wipIcon'}
+				onClick={() => setShowPopover(!showPopover)}
+			>
 				{value && (
 					<>
 						<DisplayIcon
@@ -188,15 +153,14 @@ const IconPicker = (props) => {
 					>
 						{(tab) => (
 							<div className="wip-icon-area">
-								{Object.keys(icons).map((item, index) => (
+								{icons.map((item) => (
 									<div
-										className={`wip-icon-box${
-											selectedIcon === item
-												? ' active'
-												: ''
-										}`}
+										className={`wip-icon-box${selectedIcon === item
+											? ' active'
+											: ''
+											}`}
 										onClick={() =>
-											saveIcon({ [item]: icons[item] })
+											saveIcon(item)
 										}
 									>
 										<div className="wip-icon-content">
@@ -205,12 +169,12 @@ const IconPicker = (props) => {
 											)}
 											{iconType === 'fontawesome' && (
 												<i
-													class={`${icons[item].type} ${item}`}
+													class={item}
 												></i>
 											)}
 
-											<PanelRow>
-												{icons[item].name}
+											<PanelRow label={item}>
+												{item.substring(0,16) + '...'}
 											</PanelRow>
 										</div>
 									</div>
@@ -224,4 +188,4 @@ const IconPicker = (props) => {
 	);
 };
 
-export {IconPicker, DisplayIcon};
+export { IconPicker, DisplayIcon };
