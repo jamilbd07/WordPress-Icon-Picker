@@ -19,15 +19,19 @@ import { fontAwesome } from './icons/fontawesome';
 const IconPicker = (props) => {
 	const {
 		title = 'Select Icon',
+		icons = false,
 		value,
 		onChange,
 		showHeading = true,
+		disableDashicon = false,
+		disableFontAwesome = false
 	} = props;
 
+	const [allIcons, setAllIcons] = useState({})
 	const [selectedIcon, setSelectedIcon] = useState('');
 	const [searchInput, setSearchInput] = useState('');
 	const [iconType, setIconType] = useState('dashicon');
-	const [icons, setIcons] = useState('');
+	const [selectedIcons, setSelectedIcons] = useState({});
 	const [showPopover, setShowPopover] = useState(false);
 	const [popoverAnchor, setPopoverAnchor] = useState('');
 
@@ -36,28 +40,48 @@ const IconPicker = (props) => {
 	useOutsideAlerter(popoverWrapperRef, iconWrapperRef, setShowPopover);
 
 	useEffect(() => {
-		if (typeof dashIcon === 'object' && dashIcon.length > 0) {
-			setIcons(dashIcon);
+		let _allIcons = {};
+		if (icons && typeof icons === 'object' && Object.keys(icons).length > 0) {
+			_allIcons = { ...icons }
+		}
+		else {
+			_allIcons = {
+				dashIcon: dashIcon,
+				fontAwesome: fontAwesome
+			}
+		}
+		//Remove dashicon if set as disabled
+		if (disableDashicon) {
+			delete _allIcons.dashIcon;
+		}
+		//Remove fontawesome if set as disabled
+		if (disableFontAwesome) {
+			delete _allIcons.fontAwesome;
+		}
+		//set All Icons
+		setAllIcons(_allIcons)
+
+		if (typeof _allIcons === 'object' && Object.keys(_allIcons).length > 0 && typeof _allIcons[Object.keys(_allIcons)[0]] === 'object') {
+			setSelectedIcons(_allIcons[Object.keys(_allIcons)[0]]);
 		}
 
 		//set popover anchor
-		const selector = document.querySelector('#zoloIcon');
+		const selector = document.querySelector('#wipIcon');
 		setPopoverAnchor(selector);
 	}, []);
 
 	useEffect(() => {
 		//Set search text to empty
 		setSearchInput('');
-
 		switch (iconType) {
 			case 'fontawesome':
-				if (typeof fontAwesome === 'object' && fontAwesome.length > 0) {
-					setIcons(fontAwesome);
+				if (allIcons.fontAwesome && typeof allIcons.fontAwesome === 'object' && allIcons.fontAwesome.length > 0) {
+					setSelectedIcons(allIcons.fontAwesome);
 				}
 				break;
 			default:
-				if (typeof dashIcon === 'object' && dashIcon.length > 0) {
-					setIcons(dashIcon);
+				if (allIcons.dashIcon && typeof allIcons.dashIcon === 'object' && allIcons.dashIcon.length > 0) {
+					setSelectedIcons(allIcons.dashIcon);
 				}
 		}
 	}, [iconType]);
@@ -83,11 +107,11 @@ const IconPicker = (props) => {
 		setSearchInput(text);
 
 		//Filter search result
-		const iconList = iconType === 'fontawesome' ? fontAwesome : dashIcon;
+		const iconList = iconType === 'fontawesome' ? allIcons.fontAwesome : allIcons.dashIcon;
 		const filteredIcons = iconList.filter((item) => item.includes(text));
 
 		//set Icons list from search result
-		setIcons(filteredIcons);
+		setSelectedIcons(filteredIcons);
 	};
 
 	const saveIcon = (value) => {
@@ -97,6 +121,25 @@ const IconPicker = (props) => {
 		//Hide popover
 		setShowPopover(false);
 	};
+
+	const tabs = () => {
+		const tabList = []
+		if (!disableDashicon) {
+			tabList.push({
+				name: 'dashicon',
+				title: 'Dashicon',
+				className: 'wip-icon-tab dashicon',
+			})
+		}
+		if (!disableFontAwesome) {
+			tabList.push({
+				name: 'fontawesome',
+				title: 'FontAwesome',
+				className: 'wip-icon-tab fontawesome',
+			})
+		}
+		return tabList
+	}
 
 	return (
 		<>
@@ -138,22 +181,11 @@ const IconPicker = (props) => {
 						activeClass="active-tab"
 						onSelect={(selected) => setIconType(selected)}
 						initialTabName={iconType}
-						tabs={[
-							{
-								name: 'dashicon',
-								title: 'Dashicon',
-								className: 'wip-icon-tab dashicon',
-							},
-							{
-								name: 'fontawesome',
-								title: 'FontAwesome',
-								className: 'wip-icon-tab fontawesome',
-							},
-						]}
+						tabs={tabs()}
 					>
 						{(tab) => (
 							<div className="wip-icon-area">
-								{icons.map((item) => (
+								{selectedIcons.map((item) => (
 									<div
 										className={`wip-icon-box${selectedIcon === item
 											? ' active'
@@ -174,7 +206,7 @@ const IconPicker = (props) => {
 											)}
 
 											<PanelRow label={item}>
-												{item.substring(0,16) + '...'}
+												{item.substring(0, 16) + '...'}
 											</PanelRow>
 										</div>
 									</div>
