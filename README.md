@@ -26,12 +26,15 @@ const Example = () => {
   const [icon, setIcon] = useState('');
   return (
     <IconPicker
-		value={icon}
+		    value={icon}
+        icons = {IconList} //optional -- Array
         onChange={(value) =>
             setIcon(value)
         }
         title={"Select Icon"} //optional
         showHeading={true} //optional
+        disableDashicon = {false} //optional
+        disableFontAwesome = {false} //optional
     />
   );
 };

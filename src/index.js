@@ -1,4 +1,4 @@
-import { __ } from '@wordpress/i18n';
+import React from 'react';
 import {
 	PanelRow,
 	Dashicon,
@@ -142,7 +142,7 @@ const IconPicker = (props) => {
 	}
 
 	return (
-		<>
+		<React.Fragment>
 			{showHeading && <PanelRow>{title}</PanelRow>}
 			<div
 				ref={iconWrapperRef}
@@ -216,7 +216,7 @@ const IconPicker = (props) => {
 					</TabPanel>
 				</Popover>
 			)}
-		</>
+		</React.Fragment>
 	);
 };
 

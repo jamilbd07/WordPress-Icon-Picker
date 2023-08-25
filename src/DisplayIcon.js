@@ -1,11 +1,6 @@
 import {
-	PanelRow,
-	Dashicon,
-	SearchControl,
-	TabPanel,
-	Popover,
+	Dashicon
 } from '@wordpress/components';
-import { useEffect, useState } from '@wordpress/element';
 
 import { getIconType } from "./helpers";
 

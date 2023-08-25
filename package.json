@@ -1,10 +1,17 @@
 {
   "name": "wordpress-icon-picker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Icon Picker for WordPress, Gutenberg, Theme development. Dashicon and FontAwesome icon support",
-  "main": "index.js",
+  "main": "dist/index.min.js",
+  "module": "dist/index.min.js",
+  "type": "module",
+  "files": [
+    "dist/**",
+    "package.json"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "rollup -c -w --bundleConfigAsCjs --environment NODE_ENV:development",
+    "build": "rollup -c --bundleConfigAsCjs --environment NODE_ENV:production"
   },
   "keywords": [
     "wordpress",
@@ -23,5 +30,30 @@
     "picker"
   ],
   "author": "MD Jamil Uddin",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-node-resolve": "^15.2.1",
+    "@wordpress/postcss-plugins-preset": "^4.24.0",
+    "@wordpress/scripts": "^26.11.0",
+    "node-sass": "^9.0.0",
+    "rollup": "^3.28.1",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-scss": "^4.0.0",
+    "rollup-plugin-uglify": "^6.0.4"
+  },
+  "dependencies": {
+    "@wordpress/components": "^22.1.0",
+    "@wordpress/element": "^4.20.0",
+    "@wordpress/i18n": "^4.22.0",
+    "@wordpress/scripts": "^24.6.0"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "@wordpress/components": "^22.1.0",
+    "@wordpress/element": "^4.20.0",
+    "@wordpress/i18n": "^4.22.0"
+  }
 }
