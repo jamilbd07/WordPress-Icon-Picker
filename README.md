@@ -21,6 +21,7 @@ You’ll need to install React inside your WordPress environment. In your react 
 ```js
 import { useState } from "@wordpress/element";
 import {IconPicker} from "wordpress-icon-picker";
+import "wordpress-icon-picker/dist/style.css"
 
 const Example = () => {
   const [icon, setIcon] = useState('');
@@ -50,6 +51,8 @@ const Example = () => {
   );
 };
 ```
+
+#### To display icons, please ensure that FontAwesome 5.8 or a higher version is loaded.
 
 ## License
 
