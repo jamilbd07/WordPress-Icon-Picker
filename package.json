@@ -41,7 +41,7 @@
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-scss": "^4.0.0",
-    "rollup-plugin-uglify": "^6.0.4"
+    "rollup-plugin-terser": "^7.0.2"
   },
   "dependencies": {
     "@wordpress/components": "^22.1.0",
