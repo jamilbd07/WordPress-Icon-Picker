@@ -7,7 +7,8 @@
   "type": "module",
   "files": [
     "dist/**",
-    "package.json"
+    "package.json",
+    "README.md"
   ],
   "scripts": {
     "start": "rollup -c -w --bundleConfigAsCjs --environment NODE_ENV:development",
