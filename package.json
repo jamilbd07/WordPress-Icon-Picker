@@ -35,10 +35,10 @@
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@wordpress/postcss-plugins-preset": "^4.24.0",
-    "@wordpress/scripts": "^26.11.0",
+    "@wordpress/scripts": "^24.6.0",
     "node-sass": "^9.0.0",
+    "npm-package-json-lint": "^7.0.0",
     "rollup": "^3.28.1",
-    "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-scss": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2"
@@ -46,8 +46,7 @@
   "dependencies": {
     "@wordpress/components": "^22.1.0",
     "@wordpress/element": "^4.20.0",
-    "@wordpress/i18n": "^4.22.0",
-    "@wordpress/scripts": "^24.6.0"
+    "@wordpress/i18n": "^4.22.0"
   },
   "peerDependencies": {
     "react": "^18.0.0",

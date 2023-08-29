@@ -1,4 +1,3 @@
-import builtins from "rollup-plugin-node-builtins";
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import babel from "@rollup/plugin-babel";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
@@ -30,7 +29,6 @@ export default {
     external: Object.keys(globalKeys),
     plugins: [
         peerDepsExternal(),
-        builtins(),
         nodeResolve({
             mainFields: ["module", "main"],
             extensions,
