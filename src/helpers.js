@@ -40,3 +40,12 @@ export const useOutsideAlerter = (ref, iconRef, setVal) => {
         };
     }, [ref]);
 }
+
+/**
+ * dashiconHandler
+ * @param {string} icon 
+ * @returns string
+ */
+export const dashiconHandler = (icon) => {
+    return icon.replace(/^dashicons-/, "");
+}

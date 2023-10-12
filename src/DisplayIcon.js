@@ -2,9 +2,9 @@ import {
 	Dashicon
 } from '@wordpress/components';
 
-import { getIconType } from "./helpers";
+import { getIconType, dashiconHandler } from "./helpers";
 
-const DisplayIcon = ({ icon }) => {
+const DisplayIcon = ({ icon, className = '' }) => {
 	if (typeof icon != 'string') {
 		return;
 	}
@@ -14,10 +14,10 @@ const DisplayIcon = ({ icon }) => {
 	return (
 		<>
 			{iconType === 'dashicon' && (
-				<Dashicon icon={icon} />
+				<Dashicon className={className} icon={dashiconHandler(icon)} />
 			)}
 			{iconType === 'fontawesome' && (
-				<i class={icon}></i>
+				<i class={`${icon} ${className}`}></i>
 			)}
 		</>
 	);

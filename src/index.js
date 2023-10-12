@@ -9,7 +9,7 @@ import {
 import { useEffect, useState, useRef } from '@wordpress/element';
 
 import DisplayIcon from './DisplayIcon';
-import { getIconType, useOutsideAlerter } from "./helpers";
+import { getIconType, useOutsideAlerter, dashiconHandler } from "./helpers";
 import './style.scss';
 
 //Import Dashicon list
@@ -197,7 +197,7 @@ const IconPicker = (props) => {
 									>
 										<div className="wip-icon-content">
 											{iconType === 'dashicon' && (
-												<Dashicon icon={item} />
+												<Dashicon icon={dashiconHandler(item)} />
 											)}
 											{iconType === 'fontawesome' && (
 												<i
