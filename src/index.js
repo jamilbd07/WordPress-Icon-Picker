@@ -5,6 +5,7 @@ import {
 	SearchControl,
 	TabPanel,
 	Popover,
+	Tooltip
 } from '@wordpress/components';
 import { useEffect, useState, useRef } from '@wordpress/element';
 
@@ -195,20 +196,22 @@ const IconPicker = (props) => {
 											saveIcon(item)
 										}
 									>
-										<div className="wip-icon-content">
-											{iconType === 'dashicon' && (
-												<Dashicon icon={dashiconHandler(item)} />
-											)}
-											{iconType === 'fontawesome' && (
-												<i
-													class={item}
-												></i>
-											)}
+										<Tooltip text={item}>
+											<div className="wip-icon-content">
+												{iconType === 'dashicon' && (
+													<Dashicon icon={dashiconHandler(item)} />
+												)}
+												{iconType === 'fontawesome' && (
+													<i
+														class={item}
+													></i>
+												)}
 
-											<PanelRow label={item}>
-												{item.substring(0, 16) + '...'}
-											</PanelRow>
-										</div>
+												<PanelRow label={item}>
+													{item.substring(0, 16) + '...'}
+												</PanelRow>
+											</div>
+										</Tooltip>
 									</div>
 								))}
 							</div>

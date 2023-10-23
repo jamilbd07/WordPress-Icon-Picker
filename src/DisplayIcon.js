@@ -4,7 +4,12 @@ import {
 
 import { getIconType, dashiconHandler } from "./helpers";
 
-const DisplayIcon = ({ icon, className = '' }) => {
+const DisplayIcon = (props) => {
+	const {
+		icon,
+		className = ''
+	} = props
+
 	if (typeof icon != 'string') {
 		return;
 	}
@@ -14,10 +19,17 @@ const DisplayIcon = ({ icon, className = '' }) => {
 	return (
 		<>
 			{iconType === 'dashicon' && (
-				<Dashicon className={className} icon={dashiconHandler(icon)} />
+				<Dashicon
+					{...props}
+					className={className}
+					icon={dashiconHandler(icon)}
+				/>
 			)}
 			{iconType === 'fontawesome' && (
-				<i class={`${icon} ${className}`}></i>
+				<i
+					{...props}
+					class={`${icon} ${className}`}
+				></i>
 			)}
 		</>
 	);
