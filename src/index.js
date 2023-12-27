@@ -13,7 +13,7 @@ import DisplayIcon from './DisplayIcon';
 import { getIconType, useOutsideAlerter, dashiconHandler } from "./helpers";
 import './style.scss';
 
-//Import Dashicon list
+//Import Dashicon list 
 import { dashIcon } from './icons/dashicon';
 import { fontAwesome } from './icons/fontawesome';
 

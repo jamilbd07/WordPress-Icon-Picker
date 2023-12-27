@@ -52,7 +52,7 @@ const Example = () => {
 };
 ```
 
-#### To display icons, please ensure that FontAwesome 5.8 or a higher version is loaded.
+#### To display icons, please ensure that FontAwesome 6.5 or a higher version is loaded.
 
 ## License
 
