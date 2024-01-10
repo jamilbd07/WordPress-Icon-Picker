@@ -28,7 +28,7 @@ const DisplayIcon = (props) => {
 			{iconType === 'fontawesome' && (
 				<i
 					{...props}
-					class={`${icon} ${className}`}
+					className={`${icon} ${className}`}
 				></i>
 			)}
 		</>
