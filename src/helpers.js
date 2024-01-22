@@ -4,7 +4,7 @@ import { useEffect } from '@wordpress/element';
  * Get icon type from attribute value
  */
 export const getIconType = (value) => {
-    if (value.includes('fa-')) {
+    if (value && value.includes('fa-')) {
         return 'fontawesome'
     }
 
@@ -47,5 +47,8 @@ export const useOutsideAlerter = (ref, iconRef, setVal) => {
  * @returns string
  */
 export const dashiconHandler = (icon) => {
+    if (!icon) {
+        return ''
+    }
     return icon.replace(/^dashicons-/, "");
 }
