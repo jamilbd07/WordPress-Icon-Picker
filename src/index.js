@@ -186,8 +186,9 @@ const IconPicker = (props) => {
 					>
 						{(tab) => (
 							<div className="wip-icon-area">
-								{selectedIcons.map((item) => (
+								{selectedIcons.map((item, index) => (
 									<div
+										key={index}
 										className={`wip-icon-box${selectedIcon === item
 											? ' active'
 											: ''
