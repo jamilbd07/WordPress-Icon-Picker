@@ -6,7 +6,7 @@
   "module": "dist/index.min.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jamilbd07/WordPress-Icon-Picker"
+    "url": "git+https://github.com/jamilbd07/WordPress-Icon-Picker.git"
   },
   "type": "module",
   "files": [
@@ -37,27 +37,27 @@
   "author": "MD Jamil Uddin",
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-node-resolve": "^15.2.1",
-    "@wordpress/postcss-plugins-preset": "^4.24.0",
-    "@wordpress/scripts": "^24.6.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@wordpress/postcss-plugins-preset": "^5.5.0",
+    "@wordpress/scripts": "^26.19.0",
     "node-sass": "^9.0.0",
     "npm-package-json-lint": "^7.0.0",
-    "rollup": "^3.28.1",
+    "rollup": "^4.21.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-scss": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2"
   },
   "dependencies": {
-    "@wordpress/components": "^22.1.0",
-    "@wordpress/element": "^4.20.0",
-    "@wordpress/i18n": "^4.22.0"
+    "@wordpress/components": "^25.12.0",
+    "@wordpress/element": "^5.23.0",
+    "@wordpress/i18n": "^4.46.0"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "@wordpress/components": "^22.1.0",
-    "@wordpress/element": "^4.20.0",
-    "@wordpress/i18n": "^4.22.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@wordpress/components": "^25.12.0",
+    "@wordpress/element": "^5.23.0",
+    "@wordpress/i18n": "^4.46.0"
   }
 }
