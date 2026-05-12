@@ -66,9 +66,15 @@ const IconPicker = (props) => {
 			setSelectedIcons(_allIcons[Object.keys(_allIcons)[0]]);
 		}
 
-		//set popover anchor
-		const selector = document.querySelector('#wipIcon');
-		setPopoverAnchor(selector);
+		// Set popover anchor from the per-instance ref. Previously this used
+		// `document.querySelector('#wipIcon')`, which always returned the
+		// FIRST match in the document — so when multiple IconPickers were
+		// mounted on the same page, every popover anchored to the first
+		// picker's trigger instead of its own. The `iconWrapperRef` is
+		// already bound to the local trigger div below, so we just use it.
+		if (iconWrapperRef.current) {
+			setPopoverAnchor(iconWrapperRef.current);
+		}
 	}, []);
 
 	useEffect(() => {
