@@ -1,4 +1,4 @@
-export const fontAwesome = [
+export const fontAwesome: readonly string[] = [
     "fab fa-42-group",
     "fab fa-500px",
     "fab fa-accessible-icon",

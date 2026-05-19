@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"target": "ES2019",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"jsx": "react-jsx",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"resolveJsonModule": true,
+		"allowSyntheticDefaultImports": true,
+		"declaration": true,
+		"declarationDir": "dist/types",
+		"emitDeclarationOnly": false,
+		"noEmit": false,
+		"outDir": "dist/types",
+		"types": ["react"]
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"]
+}
