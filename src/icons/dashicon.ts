@@ -1,4 +1,4 @@
-export const dashIcon = [
+export const dashIcon: readonly string[] = [
 	"dashicons-menu",
 	"dashicons-admin-site",
 	"dashicons-dashboard",

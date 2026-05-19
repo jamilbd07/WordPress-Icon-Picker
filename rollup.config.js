@@ -3,10 +3,11 @@ import babel from "@rollup/plugin-babel";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import scss from "rollup-plugin-scss";
 import { terser } from 'rollup-plugin-terser';
+import typescript from '@rollup/plugin-typescript';
 
 import postcssPlugins from "@wordpress/postcss-plugins-preset";
 
-const extensions = [".js", ".jsx"];
+const extensions = [".js", ".jsx", ".ts", ".tsx"];
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -19,7 +20,7 @@ const globalKeys = {
 };
 
 export default {
-    input: "src/index.js",
+    input: "src/index.tsx",
     output: [
         {
             file: `dist/index.min.js`,
@@ -32,6 +33,13 @@ export default {
         nodeResolve({
             mainFields: ["module", "main"],
             extensions,
+        }),
+        typescript({
+            tsconfig: "./tsconfig.json",
+            declaration: true,
+            declarationDir: "dist/types",
+            outDir: "dist",
+            rootDir: "src",
         }),
         babel({
             exclude: "node_modules/**",
