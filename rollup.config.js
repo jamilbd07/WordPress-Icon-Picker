@@ -2,7 +2,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import babel from "@rollup/plugin-babel";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import scss from "rollup-plugin-scss";
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 
 import postcssPlugins from "@wordpress/postcss-plugins-preset";
 
@@ -48,7 +48,7 @@ export default {
             sourceMap: !isProduction,
             include: ["**/*.scss", "*.css", "node_modules/**/*.css"],
             failOnError: true,
-            sass: require("node-sass"),
+            sass: require("sass"),
             plugins: postcssPlugins,
             outputStyle: isProduction ? 'compressed' : null
             // processor: () => postcss([autoprefixer({ overrideBrowserslist: "Edge 18" })]),
